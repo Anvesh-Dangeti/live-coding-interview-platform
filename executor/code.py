@@ -1,2 +1,3 @@
-# Start coding here...
-print("Hello, world!")
+a = input()
+b = input()
+print(int(a) + int(b))
