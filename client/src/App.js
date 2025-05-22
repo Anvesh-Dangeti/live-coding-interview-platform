@@ -25,9 +25,21 @@ function App() {
     socket.emit('code-change', { roomID: ROOM_ID, code: value });
   };
 
-  const handleRun = () => {
-    alert('Code submitted:\n\n' + code);
-  };
+  // const handleRun = () => {
+  //   alert('Code submitted:\n\n' + code);
+  // };
+
+  const handleRun = async () => {
+  const response = await fetch('http://localhost:5000/run', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ code }),
+  });
+
+  const data = await response.json();
+  alert(data.output || data.error);
+};
+
 
   return (
     <div className="App">

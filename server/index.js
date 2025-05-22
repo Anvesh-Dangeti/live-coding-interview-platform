@@ -3,6 +3,8 @@ const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
 
+
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -10,6 +12,9 @@ app.use(cors());
 app.use(express.json());
 
 const server = http.createServer(app);
+
+const runRoute = require('./routes/run');
+app.use('/run', runRoute);
 
 // Socket.io setup
 const io = new Server(server, {
